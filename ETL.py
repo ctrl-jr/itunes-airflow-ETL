@@ -12,6 +12,7 @@ print(f"Status is {response.status_code} !")
 json_obj = json.loads(response.text)
 #We want to look into the _results_ key from the file 
 results_array = json_obj["results"]
+#initializing an empty list 
 movie_list = []
 for result in results_array:
     if result["primaryGenreName"] != "Action & Adventure":
