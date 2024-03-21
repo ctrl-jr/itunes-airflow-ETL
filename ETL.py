@@ -20,7 +20,8 @@ for result in results_array:
         refined_result = {
                         "movie" : result["trackName"], #The key _trackName_ contains the movie title
                         "runtime": round((result["trackTimeMillis"] / 3600000),2), #Transforming the time from miliseconds to hours so we can get a proper runtime
-                        "genre" : result["primaryGenreName"] }
+                        "genre" : result["primaryGenreName"],
+                        "director" : result["artistName"] }
 
     movie_list.append(refined_result)
     

@@ -1,12 +1,12 @@
-,movie,runtime,genre
-0,The Avengers,2.4,Action & Adventure
-1,Avengers: Age of Ultron,2.37,Action & Adventure
-2,Avengers: Infinity War,2.5,Action & Adventure
-3,Avengers: Endgame,3.03,Action & Adventure
-4,Captain America: The First Avenger,2.09,Action & Adventure
-5,The Avengers (1998),1.49,Action & Adventure
-6,Crippled Avengers,1.67,Action & Adventure
-7,Masked Avengers,1.45,Action & Adventure
-8,Avengers Grimm: Time Wars,1.46,Action & Adventure
-9,Valentine: The Dark Avenger (Dubbed),1.62,Action & Adventure
-10,The Shaolin Avengers,1.55,Action & Adventure
+,movie,runtime,genre,director
+0,The Avengers,2.4,Action & Adventure,Joss Whedon
+1,Avengers: Age of Ultron,2.37,Action & Adventure,Joss Whedon
+2,Avengers: Infinity War,2.5,Action & Adventure,Anthony Russo & Joe Russo
+3,Avengers: Endgame,3.03,Action & Adventure,Anthony Russo & Joe Russo
+4,Captain America: The First Avenger,2.09,Action & Adventure,Joe Johnston
+5,The Avengers (1998),1.49,Action & Adventure,Jeremiah Chechik
+6,Crippled Avengers,1.67,Action & Adventure,張徹
+7,Masked Avengers,1.45,Action & Adventure,Cheh Chang
+8,Avengers Grimm: Time Wars,1.46,Action & Adventure,Maximilian Elfeldt
+9,Valentine: The Dark Avenger (Dubbed),1.62,Action & Adventure,Agus Hermansyah Mawardy
+10,The Shaolin Avengers,1.55,Action & Adventure,張徹
