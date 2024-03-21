@@ -14,12 +14,14 @@ json_obj = json.loads(response.text)
 results_array = json_obj["results"]
 movie_list = []
 for result in results_array:
-    refined_result = {
-        "runtime": (result["trackTimeMillis"] / 3600000), #Transforming the time from miliseconds to hours so we can get a proper runtime
-        "movie_name" : result["trackName"], #The key _trackName_ contains the movie
-        "movie_genre" : result["primaryGenreName"] }
+    if result["primaryGenreName"] == "Action & Adventure":
+        refined_result = {
+                        "movie" : result["trackName"], #The key _trackName_ contains the movie,
+                        "runtime": round((result["trackTimeMillis"] / 3600000),2), #Transforming the time from miliseconds to hours so we can get a proper runtime
+                        "genre" : result["primaryGenreName"] }
 
     movie_list.append(refined_result)
+    else: pass
 
     #print(f"Movie:: {movie_name}") #- Runtime:: {round(runtime,1)}h")
 print(movie_list)

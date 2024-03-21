@@ -1,17 +1,17 @@
-,runtime,movie_name,movie_genre
-0,2.3972555555555557,The Avengers,Action & Adventure
-1,2.3664952777777777,Avengers: Age of Ultron,Action & Adventure
-2,2.5010166666666667,Avengers: Infinity War,Action & Adventure
-3,3.032681388888889,Avengers: Endgame,Action & Adventure
-4,2.087397222222222,Captain America: The First Avenger,Action & Adventure
-5,1.3780561111111111,Avengers Confidential: Black Widow & Punisher,Anime
-6,1.4896722222222223,The Avengers (1998),Action & Adventure
-7,1.6722333333333332,Crippled Avengers,Action & Adventure
-8,1.4508333333333334,Masked Avengers,Action & Adventure
-9,1.4606041666666667,Avengers Grimm: Time Wars,Action & Adventure
-10,1.4632241666666668,Avengers of Justice: Farce Wars,Comedy
-11,1.5167944444444443,Avenger,Thriller
-12,1.284495,Avenger Dogs,Kids & Family
-13,1.6240619444444444,Valentine: The Dark Avenger (Dubbed),Action & Adventure
-14,1.5489119444444444,The Shaolin Avengers,Action & Adventure
-15,1.4237777777777778,Avengers Grimm,Thriller
+,movie,runtime,genre
+0,The Avengers,2.4,Action & Adventure
+1,Avengers: Age of Ultron,2.37,Action & Adventure
+2,Avengers: Infinity War,2.5,Action & Adventure
+3,Avengers: Endgame,3.03,Action & Adventure
+4,Captain America: The First Avenger,2.09,Action & Adventure
+5,Avengers Confidential: Black Widow & Punisher,1.38,Anime
+6,The Avengers (1998),1.49,Action & Adventure
+7,Crippled Avengers,1.67,Action & Adventure
+8,Masked Avengers,1.45,Action & Adventure
+9,Avengers Grimm: Time Wars,1.46,Action & Adventure
+10,Avengers of Justice: Farce Wars,1.46,Comedy
+11,Avenger,1.52,Thriller
+12,Avenger Dogs,1.28,Kids & Family
+13,Valentine: The Dark Avenger (Dubbed),1.62,Action & Adventure
+14,The Shaolin Avengers,1.55,Action & Adventure
+15,Avengers Grimm,1.42,Thriller
