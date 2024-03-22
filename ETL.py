@@ -2,6 +2,7 @@
 import requests
 import json
 import pandas as pd
+import datetime as dt
 url = "https://itunes.apple.com/search?term=avengers&media=movie"
 response = requests.get(url)
 
@@ -20,18 +21,23 @@ for result in results_array:
     else:
         refined_result = {
                         "movie" : result["trackName"], #The key _trackName_ contains the movie title
-                        "runtime": round((result["trackTimeMillis"] / 3600000),2), #Transforming the time from miliseconds to hours so we can get a proper runtime
+                        "temp_year": result["releaseDate"],
+                        "runtime": round((result["trackTimeMillis"] / 3600000),1), #Transforming the time from miliseconds to hours so we can get a proper runtime
                         "genre" : result["primaryGenreName"],
                         "director" : result["artistName"] }
 
     movie_list.append(refined_result)
     
-
-    #print(f"Movie:: {movie_name}") #- Runtime:: {round(runtime,1)}h")
-print(movie_list)
+#print(movie_list)
 #Creating a dataframe of our move list
 df = pd.DataFrame(movie_list)
+#Extracting year from yyyy-mm-dd-hh-mmTZ
+df['year'] = pd.DatetimeIndex(df['temp_year']).year
+#Making a new df excluding old year format
+new_df = df[['movie', 'year', 'runtime', 'director' ]]
+new_df = new_df.sort_values(by=['year'])
+print(new_df)
 #Creating a local CSV to view the list
-df.to_csv("avengers_movies.csv")
+new_df.to_csv("avengers_movies.csv")
 
 #added random comment
