@@ -44,20 +44,26 @@ df['year'] = pd.DatetimeIndex(df['temp_year']).year
 #Making a new df excluding old year format
 new_df = df[['movie', 'year', 'runtime', 'director' ]]
 new_df = new_df.sort_values(by=['year'])
+new_df = new_df.reset_index(drop=True) #removing index
+
 #print(new_df)
 #Creating a local CSV to view the list
 new_df.to_csv("avengers_movies.csv")
 
-#Connecting to S3 bucket using boto3
+#Setting up the S3 connection with boto3
 s3 = boto3.client("s3")
-bucket_name = "jr-firsts3-bucket" 
+bucket_name = "jr-s3-00001" 
 object_name = "avengers_movie_list.csv" #S3 destination file name
 file_name = os.path.join(pathlib.Path(__file__).parent.resolve(), "avengers_movies.csv") #local filename
 
 response1 = s3.upload_file(file_name, bucket_name, object_name)
 pprint(response1)  # prints None
 
-#S3 destination when using airflow inside an EC2
-#new_df.to_csv("s3://jr-firsts3-bucket/avengers-movielist.csv")
+try:
+    #S3 destination when using airflow inside an EC2
+    new_df.to_csv("s3://jr-s3-00001/avengers_movielist.csv")
+    print(f"File {object_name} uploaded to s3 bucket: {bucket_name}")
+except:
+    print("Uh-oh couldn't upload to s3")
 
 #run_itunes_etl()
