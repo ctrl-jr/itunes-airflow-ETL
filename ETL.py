@@ -7,7 +7,7 @@ import boto3
 from pprint import pprint 
 import os
 import pathlib
-
+import fastparquet
 
 #def run_itunes_etl():
 url = "https://itunes.apple.com/search?term=avengers&media=movie"
@@ -39,30 +39,32 @@ for result in results_array:
 #print(movie_list)
 #Creating a dataframe of our move list
 df = pd.DataFrame(movie_list)
+
 #Extracting year from yyyy-mm-dd-hh-mmTZ
 df['year'] = pd.DatetimeIndex(df['temp_year']).year
+
 #Making a new df excluding old year format
 new_df = df[['movie', 'year', 'runtime', 'director' ]]
 new_df = new_df.sort_values(by=['year'])
-new_df = new_df.reset_index(drop=True) #removing index
+#new_df = new_df.reset_index(drop=True) #removing index
 
 #print(new_df)
 #Creating a local CSV to view the list
-new_df.to_csv("avengers_movies.csv")
+#new_df.to_csv("avengers_movies.csv", index=False)
 
-#Setting up the S3 connection with boto3
-s3 = boto3.client("s3")
-bucket_name = "jr-s3-00001" 
-object_name = "avengers_movie_list.csv" #S3 destination file name
-file_name = os.path.join(pathlib.Path(__file__).parent.resolve(), "avengers_movies.csv") #local filename
+#Setting up the S3 connection with boto3 --- UNNECESSARY
+# s3 = boto3.client("s3")
+# bucket_name = "jr-s3-00001" 
+# object_name = "avengers_movie_list_01.csv" #S3 destination file name
+# file_name = os.path.join(pathlib.Path(__file__).parent.resolve(), "avengers_movies.csv") #local filename
 
-response1 = s3.upload_file(file_name, bucket_name, object_name)
-pprint(response1)  # prints None
+# response1 = s3.upload_file(file_name, bucket_name, object_name)
+# pprint(response1)  # prints None
 
 try:
     #S3 destination when using airflow inside an EC2
-    new_df.to_csv("s3://jr-s3-00001/avengers_movielist.csv")
-    print(f"File {object_name} uploaded to s3 bucket: {bucket_name}")
+    new_df.to_csv("s3://jr-s3-00001/avengers.csv", sep='\t', index=False)
+    print("File uploaded to s3 bucket")
 except:
     print("Uh-oh couldn't upload to s3")
 
