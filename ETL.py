@@ -3,11 +3,11 @@ import requests
 import json
 import pandas as pd
 import datetime as dt
-import boto3
 from pprint import pprint 
-import os
-import pathlib
-import fastparquet
+# import boto3
+# import os
+# import pathlib
+# import fastparquet
 
 #def run_itunes_etl():
 url = "https://itunes.apple.com/search?term=avengers&media=movie"
