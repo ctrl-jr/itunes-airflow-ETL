@@ -1,16 +1,14 @@
-#Step 1 : pull data from iTunes
+
 import requests
 import json
 import pandas as pd
 import datetime as dt
 from pprint import pprint 
 import s3fs
-# import boto3
-# import os
-# import pathlib
-# import fastparquet
 
+#It's a defined as a function so it can be called from the Airflow DAG (itunes_dag.py)
 def run_itunes_etl():
+    #Step 1 : pull data from iTunes in this movies that include 'avengers' in their title
     url = "https://itunes.apple.com/search?term=avengers&media=movie"
     response = requests.get(url)
 
@@ -19,9 +17,9 @@ def run_itunes_etl():
 
     #Loading the downloaded text as a json string
     json_obj = json.loads(response.text)
-    #We want to look into the _results_ key from the file 
+    #We want to look into the _results_ key from the json file 
     results_array = json_obj["results"]
-    #initializing an empty list 
+    #Initializing an empty list 
     movie_list = []
     for result in results_array:
         if result["primaryGenreName"] != "Action & Adventure":
@@ -36,8 +34,7 @@ def run_itunes_etl():
 
         movie_list.append(refined_result)
         
-    #print(movie_list)
-    #Creating a dataframe of our move list
+    #Creating a dataframe of our movie list
     df = pd.DataFrame(movie_list)
 
     #Extracting year from yyyy-mm-dd-hh-mmTZ
@@ -50,16 +47,7 @@ def run_itunes_etl():
 
     #print(new_df)
     #Creating a local CSV to view the list
-    #new_df.to_csv("avengers_movies.csv", index=False)
-
-    #Setting up the S3 connection with boto3 --- UNNECESSARY
-    # s3 = boto3.client("s3")
-    # bucket_name = "jr-s3-00001" 
-    # object_name = "avengers_movie_list_01.csv" #S3 destination file name
-    # file_name = os.path.join(pathlib.Path(__file__).parent.resolve(), "avengers_movies.csv") #local filename
-
-    # response1 = s3.upload_file(file_name, bucket_name, object_name)
-    # pprint(response1)  # prints None
+    new_df.to_csv("avengers_movies.csv", index=False)
 
     try:
         #S3 destination when using airflow inside an EC2
