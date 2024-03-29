@@ -6,7 +6,7 @@ import datetime as dt
 from pprint import pprint 
 import s3fs
 
-#It's a defined as a function so it can be called from the Airflow DAG (itunes_dag.py)
+#It's defined as a function so it can be called from the Airflow DAG (itunes_dag.py)
 def run_itunes_etl():
     #Step 1 : pull data from iTunes in this movies that include 'avengers' in their title
     url = "https://itunes.apple.com/search?term=avengers&media=movie"
