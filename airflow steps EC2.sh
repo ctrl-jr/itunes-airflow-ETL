@@ -11,3 +11,5 @@ airflow users create --username admin --password admin --firstname John --lastna
 airflow webserver -D
 airflow scheduler -D
 
+#View airflow PIDs
+lsof -t tcp:8080

@@ -8,7 +8,7 @@ from ETL import run_itunes_etl
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime(2020, 11, 8),
+    'start_date': datetime(2024, 29, 3),
     'email': ['airflow@example.com'],
     'email_on_failure': False,
     'email_on_retry': False,
@@ -24,7 +24,7 @@ dag = DAG(
 )
 
 run_etl = PythonOperator(
-    task_id='complete_twitter_etl',
+    task_id='itunes_to_s3', #must use underscores
     python_callable=run_itunes_etl, #just like our function in the ETL.py file
     dag=dag, 
 )
